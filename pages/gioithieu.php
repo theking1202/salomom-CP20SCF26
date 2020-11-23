@@ -7,10 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-        echo '<h1 style="color:red">Hello word!!</h1>';
-    ?>
-    <a href="pages/lienhe.php">Liên hệ</a><br>
-    <a href="pages/gioithieu.php">Giới thiệu</a>
+    <h1>Giới thiệu</h1>
+    <a href="../index.php">Quay về trang chủ</a>
 </body>
 </html>
