@@ -15,7 +15,8 @@
 </head>
 <body>
     <?php
-
+        //Ket noi CSDL
+        require_once('connectdb.php');
         $hoten = 'Lợi';
         echo '<h1 style="color:red">Xin chào </h1>';
     ?>
