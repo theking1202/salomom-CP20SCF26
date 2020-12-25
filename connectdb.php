@@ -1,5 +1,5 @@
 <?php
-    $conn = mysqli_connect("localhost","root","","backend")
+    $conn = mysqli_connect("localhost","root","","hocbackend")
     or die('Xin loi khong ket noi duoc database.');
     // Tùy chỉnh kết nối
     // Set charset là utf-8 đối với kết nối này. Dùng để gõ tiếng Việt, Nhật, Thái, Trung Quốc ...
