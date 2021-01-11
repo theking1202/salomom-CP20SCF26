@@ -26,7 +26,7 @@
 EOT;
                 $result = mysqli_query($conn,$sql);
                 $stt = 1;
-                $lsp = [];
+                $hsp = [];
                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                     $hsp[] = array(
                         'hsp_ma' => $row['hsp_ma'],
@@ -35,22 +35,22 @@ EOT;
                         );
                 }
             ?>
-             <?php foreach ($hsp as $hsp) : ?>
+             <?php foreach ($hsp as $h) : ?>
               <tr>
                 <td><?= $stt++ ?></td>
-                <td><?= $hsp['hsp_ma'] ?></td>
-                <td><?= $hsp['hsp_ten'] ?></td>
+                <td><?= $h['hsp_ma'] ?></td>
+                <td><?= $h['hsp_ten'] ?></td>
                 <td>
-                    <img src="/salomom-CP20SCF26/backend/assets/uploads/products/<?=$hsp['hsp_tentaptin']?>" alt="">
+                    <img src="/salomom-CP20SCF26/backend/assets/uploads/products/<?=$h['hsp_tentaptin']?>" alt="">
                 </td>
                 <td>
                   <!-- Nút sửa, bấm vào sẽ hiển thị form hiệu chỉnh thông tin dựa vào khóa chính `lsp_ma` -->
-                  <a href="edit.php?lsp_ma=<?= $hsp['lsp_ma'] ?>" class="btn btn-warning">
+                  <a href="edit.php?hsp_ma=<?= $h['hsp_ma'] ?>" class="btn btn-warning">
                     <span data-feather="edit"></span> Sửa
                   </a>
 
                   <!-- Nút xóa, bấm vào sẽ xóa thông tin dựa vào khóa chính `lsp_ma` -->
-                  <a href="delete.php?lsp_ma=<?= $hsp['lsp_ma'] ?>" class="btn btn-danger">
+                  <a href="delete.php?hsp_ma=<?= $h['hsp_ma'] ?>" class="btn btn-danger">
                     <span data-feather="delete"></span> Xóa
                   </a>
                 </td>
