@@ -14,7 +14,6 @@
         //thuc thi sql
         $result = mysqli_query($conn,$sql);
         echo'Đã thêm thành công!!!';
-        $sql2 = 
     ?>
 </body>
 </html>

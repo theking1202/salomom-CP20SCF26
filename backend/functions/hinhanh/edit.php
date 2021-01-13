@@ -79,7 +79,7 @@
 
                     $tentaptin= $_FILES['hsp_tentaptin']['name'];
                     $ten = date('YmdHis') . '_' . $tentaptin;
-                    $sqlInsert="UPDATE `hinhsanpham` SET hsp_tentaptin='$tentaptin' WHERE hsp_ma=$hsp_ma;";
+                    $sqlInsert="UPDATE `hinhsanpham` SET hsp_tentaptin='$ten' WHERE hsp_ma=$hsp_ma;";
                     $resultInsert=mysqli_query($conn,$sqlInsert);
                     move_uploaded_file($_FILES['hsp_tentaptin']['tmp_name'], $upload_dir.$subdir.$ten);
                 }
