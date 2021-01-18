@@ -26,6 +26,6 @@ EOT;
     }
     
     // Dữ liệu JSON, array PHP -> JSON 
-    echo json_encode($dataquantityLoaiHang[0]);
+    echo json_encode($dataquantityLoaiHang);
 
 ?>
