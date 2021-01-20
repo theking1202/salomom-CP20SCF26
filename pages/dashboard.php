@@ -45,8 +45,8 @@
 <script src="../backend/assets/vendor/charjs/Chart.min.js"></script>
 <script>
     $(document).ready(function(){
-        // $('#refreshBaoCaoSanPham').click(function(){
-        function baocaosanpham(){
+      // function baocaosanpham(){
+        $('#refreshBaoCaoSanPham').click(function(){
             $.ajax('/salomom-CP20SCF26/backend/ajax/baocaothongkesoluonghang-ajax.php',{
                 success: function(data){
                     debugger;
@@ -59,8 +59,8 @@
                     alert('Co loi'+errorThrown);
                 }
             });
-        // });
-        }
+        });
+        // }
     });
 
     // ------------------ Vẽ biểu đồ thống kê Loại sản phẩm -----------------
@@ -117,7 +117,7 @@
         renderChartThongKeLoaiSanPham();
       });
 
-      baocaosanpham();
+      // baocaosanpham();
 </script>
 
 </html>
