@@ -10,6 +10,7 @@
     <link href="../../assets/vendor/DataTables/Buttons-1.6.3/css/buttons.bootstrap4.min.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
+    <a href="create.php"> Them</a>
     <table id="tblDonhang" class="table-bordered" >
         <thead>
             <th>Mã đơn hàng</th>
