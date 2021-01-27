@@ -118,8 +118,8 @@
         <?php endif; ?>
     <?php
         if(isset($_POST['add'])){
-            $lsp_ten = $_POST['lsp_ten'];
-            $lsp_mota = $_POST['lsp_mota'];
+            $lsp_ten = htmlentities( $_POST['lsp_ten']);
+            $lsp_mota = htmlentities( $_POST['lsp_mota']);
             include_once('../../../connectdb.php');
             $sql = "INSERT INTO loaisanpham(lsp_ten,lsp_mota) VALUES ('$lsp_ten','$lsp_mota')";
             $result = mysqli_query($conn,$sql);

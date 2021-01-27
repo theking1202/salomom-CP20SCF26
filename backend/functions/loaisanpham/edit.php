@@ -23,7 +23,7 @@
     </form>
     <?php
         if(isset($_POST['save'])){
-            $ten=$_POST['lsp_ten'];
+            $ten= htmlentities( $_POST['lsp_ten']);
             $mota=$_POST['lsp_mota'];
             $sql1="UPDATE loaisanpham SET lsp_ten='$ten' , lsp_mota='$mota' WHERE lsp_ma=$ma";
             // var_dump($sql1); die;
