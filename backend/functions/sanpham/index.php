@@ -34,7 +34,7 @@
         , km.km_ten, km.km_noidung, km.km_tungay, km.km_denngay
     FROM `sanpham` sp
     JOIN `loaisanpham` lsp ON sp.lsp_ma = lsp.lsp_ma
-    JOIN `nhasanxuat` nsx ON sp.nsx_ma = nsx.nsx_ma
+    JOIN `nhasanxuat`nsx ON sp.nsx_ma = nsx.nsx_ma
     LEFT JOIN `khuyenmai` km ON sp.km_ma = km.km_ma
     ORDER BY sp.sp_ma DESC
 EOT;

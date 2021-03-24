@@ -120,7 +120,58 @@ EOT;
             <tbody>
             </tbody>                
         </table>
+        <button class="btn btn-primary" name="btnSave">Lưu</button>
     </form>
+    <?php
+                // Nếu người dùng có bấm nút Đăng ký thì thực thi câu lệnh
+                if (isset($_POST['btnSave'])) {
+                    // 1. Phân tách lấy dữ liệu người dùng gởi từ REQUEST POST
+                    // Thông tin đơn hàng
+                    $kh_tendangnhap = $_POST['kh_tendangnhap'];
+                    $dh_ngaylap = $_POST['dh_ngaylap'];
+                    $dh_ngaygiao = $_POST['dh_ngaygiao'];
+                    $dh_noigiao = $_POST['dh_noigiao'];
+                    $dh_trangthaithanhtoan = $_POST['dh_trangthaithanhtoan'];
+                    $httt_ma = $_POST['httt_ma'];
+
+                    // Thông tin các dòng chi tiết đơn hàng
+                    $arr_sp_ma = $_POST['sp_ma'];                   // mảng array do đặt tên name="sp_ma[]"
+                    $arr_sp_dh_soluong = $_POST['sp_dh_soluong'];   // mảng array do đặt tên name="sp_dh_soluong[]"
+                    $arr_sp_dh_dongia = $_POST['sp_dh_dongia'];     // mảng array do đặt tên name="sp_dh_dongia[]"
+                    // var_dump($sp_ma);die;
+
+                    // 2. Thực hiện câu lệnh Tạo mới (INSERT) Đơn hàng
+                    // Câu lệnh INSERT
+                    $sqlInsertDonHang = "INSERT INTO `dondathang` (`dh_ngaylap`, `dh_ngaygiao`, `dh_noigiao`, `dh_trangthaithanhtoan`, `httt_ma`, `kh_tendangnhap`) VALUES ('$dh_ngaylap', '$dh_ngaygiao', N'$dh_noigiao', '$dh_trangthaithanhtoan', '$httt_ma', '$kh_tendangnhap')";
+                    // print_r($sql); die;
+
+                    // Thực thi INSERT Đơn hàng
+                    mysqli_query($conn, $sqlInsertDonHang);
+
+                    // 3. Lấy ID Đơn hàng mới nhất vừa được thêm vào database
+                    // Do ID là tự động tăng (PRIMARY KEY và AUTO INCREMENT), nên chúng ta không biết được ID đă tăng đến số bao nhiêu?
+                    // Cần phải sử dụng biến `$conn->insert_id` để lấy về ID mới nhất
+                    // Nếu thực thi câu lệnh INSERT thành công thì cần lấy ID mới nhất của Đơn hàng để làm khóa ngoại trong Chi tiết đơn hàng
+                    $dh_ma = $conn->insert_id;
+
+                    // 4. Duyệt vòng lặp qua mảng các dòng Sản phẩm của chi tiết đơn hàng được gởi đến qua request POST
+                    for($i = 0; $i < count($arr_sp_ma); $i++) {
+                        // 4.1. Chuẩn bị dữ liệu cho câu lệnh INSERT vào table `sanpham_dondathang`
+                        $sp_ma = $arr_sp_ma[$i];
+                        $sp_dh_soluong = $arr_sp_dh_soluong[$i];
+                        $sp_dh_dongia = $arr_sp_dh_dongia[$i];
+
+                        // 4.2. Câu lệnh INSERT
+                        $sqlInsertSanPhamDonDatHang = "INSERT INTO `sanpham_dondathang` (`sp_ma`, `dh_ma`, `sp_dh_soluong`, `sp_dh_dongia`) VALUES ($sp_ma, $dh_ma, $sp_dh_soluong, $sp_dh_dongia)";
+
+                        // 4.3. Thực thi INSERT
+                        mysqli_query($conn, $sqlInsertSanPhamDonDatHang);
+                    }
+
+                    // 5. Thực thi hoàn tất, điều hướng về trang Danh sách
+                    echo '<script>location.href = "index.php";</script>';
+                }
+                ?>
 </div>        
 <script>
         // Đăng ký sự kiện Click nút Thêm Sản phẩm
@@ -147,13 +198,12 @@ EOT;
             $('#tblChiTietDonHang tbody').append(htmlTemplate);
 
             // Clear
-            // $('#sp_ma').val('');
-            // $('#soluong').val('');
+            $('#sp_ma').val('');
+            $('#soluong').val('');
         });
 
-        $('#tblChiTietDonHang').on('click', 'btn-delete-row', function(){
+        $('#tblChiTietDonHang').on('click', 'button', function(){
             $(this).parent().parent().remove();
-
         });
 </script>
 </body>
